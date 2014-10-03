@@ -184,6 +184,8 @@ set( BASE_SRCS
   src/inffast.c
   src/inflate.c
   src/inftrees.c
+  src/pcre_config.c
+  src/pcre_byte_order.c
   src/pcre_chartables.c
   src/pcre_compile.c
   src/pcre_exec.c
@@ -194,7 +196,12 @@ set( BASE_SRCS
   src/pcre_ord2utf8.c
   src/pcre_study.c
   src/pcre_tables.c
-  src/pcre_try_flipped.c
+  src/pcre_dfa_exec.c
+  src/pcre_get.c
+  src/pcre_jit_compile.c
+  src/pcre_refcount.c
+  src/pcre_string_utils.c
+  src/pcre_version.c
   src/pcre_ucd.c
   src/pcre_valid_utf8.c
   src/pcre_xclass.c
