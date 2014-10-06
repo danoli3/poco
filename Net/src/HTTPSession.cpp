@@ -64,13 +64,21 @@ HTTPSession::HTTPSession(const StreamSocket& socket, bool keepAlive):
 
 HTTPSession::~HTTPSession()
 {
-	if (_pBuffer) HTTPBufferAllocator::deallocate(_pBuffer, HTTPBufferAllocator::BUFFER_SIZE);
+	try
+	{
+		if (_pBuffer) HTTPBufferAllocator::deallocate(_pBuffer, HTTPBufferAllocator::BUFFER_SIZE);
+	}
+	catch (...)
+	{
+		poco_unexpected();
+	}
 	try
 	{
 		close();
 	}
 	catch (...)
 	{
+		poco_unexpected();
 	}
 	delete _pException;
 }
@@ -200,6 +208,13 @@ void HTTPSession::setException(const Poco::Exception& exc)
 {
 	delete _pException;
 	_pException = exc.clone();
+}
+
+
+void HTTPSession::clearException()
+{
+	delete _pException;
+	_pException = 0;
 }
 
 
